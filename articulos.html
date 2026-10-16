@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repositorio de Artículos y Doctrina Jurídica | Dr. Gabriel Torres V.</title>
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #0b0f19;
+            --primary-navy: #111827;
+            --accent-gold: #d4af37;
+            --accent-gold-light: #f3e5ab;
+            --whatsapp-green: #25d366;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --bg-card: #1f2937;
+            --border-subtle: rgba(212, 175, 55, 0.2);
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, sans-serif; margin: 0; padding: 0; background-color: var(--primary-dark); color: var(--text-main); line-height: 1.6; }
+
+        /* NAVEGACIÓN ÉLITE */
+        nav {
+            display: flex; justify-content: space-between; align-items: center; padding: 20px 7%; background: rgba(11, 15, 25, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-subtle); position: sticky; top: 0; z-index: 1000;
+        }
+
+        .logo-brand { font-size: 1.25rem; font-weight: 800; color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo-brand span { color: var(--accent-gold); }
+
+        .btn-volver {
+            display: inline-flex; align-items: center; gap: 8px; background: rgba(212,175,55,0.1); color: var(--accent-gold); padding: 8px 18px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.85rem; border: 1px solid var(--border-subtle); transition: all 0.2s;
+        }
+        .btn-volver:hover { background: var(--accent-gold); color: var(--primary-dark); }
+
+        /* CONTENEDOR PRINCIPAL */
+        main { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
+
+        .header-box { text-align: center; margin-bottom: 50px; }
+        .header-title { font-size: 2.5rem; font-weight: 900; margin-bottom: 15px; }
+        .header-subtitle { color: var(--text-muted); font-size: 1rem; max-width: 650px; margin: 0 auto; }
+
+        /* Malla de Artículos */
+        .grid-articulos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card-articulo {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card-articulo:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-subtle);
+        }
+
+        .card-tag {
+            background: rgba(212,175,55,0.15);
+            color: var(--accent-gold);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .card-date { font-size: 0.75rem; color: var(--text-muted); }
+
+        .card-title {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            margin: 15px 0 12px 0;
+            line-height: 1.4;
+        }
+
+        .card-excerpt {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .btn-leer {
+            background: rgba(212,175,55,0.1);
+            color: var(--accent-gold);
+            border: 1px solid var(--border-subtle);
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s;
+        }
+
+        .btn-leer:hover {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+        }
+
+        footer { background: #070a10; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 50px 20px; color: var(--text-muted); font-size: 0.85rem; margin-top: 80px; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <nav>
+        <a href="index.html" class="logo-brand">
+            <i class="fa-solid fa-balance-scale" style="color: var(--accent-gold);"></i> Dr. Gabriel Torres <span>V.</span>
+        </a>
+        <a href="index.html" class="btn-volver">
+            <i class="fa-solid fa-arrow-left"></i> Volver al Inicio
+        </a>
+    </nav>
+
+    <main>
+        <div class="header-box">
+            <span style="color: var(--accent-gold); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Biblioteca Jurídica</span>
+            <h1 class="header-title">Publicaciones y Análisis Doctrinales</h1>
+            <p class="header-subtitle">Espacio de investigación legal y criterios técnicos sobre contratación, derecho societario, protección de datos y entorno digital en el Ecuador.</p>
+        </div>
+
+        <!-- REPOSITORIO COMPLETO DE ARTÍCULOS -->
+        <div class="grid-articulos">
+
+            <!-- Artículo 1 -->
+            <article class="card-articulo">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span class="card-tag">Derecho Civil & Vehicular</span>
+                        <span class="card-date">Octubre 2026</span>
+                    </div>
+                    <h3 class="card-title">Análisis de los riesgos jurídicos por gravámenes, multas y bloqueos ocultos en la compraventa de vehículos usados</h3>
+                    <p class="card-excerpt">Estudio técnico sobre los vacíos de las consultas públicas habituales y la necesidad de contratos de compraventa blindados para proteger el patrimonio...</p>
+                </div>
+                <a href="articulo-riesgos-vehiculares.html" class="btn-leer">
+                    <span>Leer análisis completo</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </article>
+
+            <!-- Artículo 2 -->
+            <article class="card-articulo">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span class="card-tag">Derecho Societario & LOPDP</span>
+                        <span class="card-date">Septiembre 2026</span>
+                    </div>
+                    <h3 class="card-title">Cumplimiento y debida diligencia: Guía técnica de la LOPDP para empresas y negocios en Cuenca</h3>
+                    <p class="card-excerpt">Directrices prácticas para la adecuación legal de bases de datos, adendas a contratos laborales de confidencialidad y prevención de sanciones administrativas...</p>
+                </div>
+                <a href="articulo-lopdp-empresas.html" class="btn-leer">
+                    <span>Leer análisis completo</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </article>
+
+        <!-- Artículo 3 -->
+<article class="card-articulo">
+    <div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="card-tag">Derecho Mercantil</span>
+            <span class="card-date">Octubre 2026</span>
+        </div>
+        <h3 class="card-title">Estructuración de contratos comerciales y cláusulas penales por incumplimiento en el comercio local</h3>
+        <p class="card-excerpt">Análisis sobre la validez de acuerdos ejecutivos y mecanismos de cobro ágil en la prestación de servicios profesionales y comerciales...</p>
+    </div>
+    <a href="articulo-contratos-comerciales.html" class="btn-leer">
+        <span>Leer análisis completo</span>
+        <i class="fa-solid fa-arrow-right"></i>
+    </a>
+</article>
+
+<!-- Artículo 4 -->
+            <article class="card-articulo">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span class="card-tag">Derecho Probatorio</span>
+                        <span class="card-date">Octubre 2026</span>
+                    </div>
+                    <h3 class="card-title">Más allá de la captura de pantalla: Validez procesal y peritaje informático de chats de WhatsApp en el COGEP</h3>
+                    <p class="card-excerpt">Estudio sobre cadena de custodia, metadatos y protocolos de certificación notarial para asegurar la eficacia probatoria de evidencia digital...</p>
+                </div>
+                <a href="articulo-evidencia-digital-cogep.html" class="btn-leer">
+                    <span>Leer análisis completo</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </article>
+
+            <!-- Artículo 5 -->
+            <article class="card-articulo">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span class="card-tag">Derecho Societario</span>
+                        <span class="card-date">Octubre 2026</span>
+                    </div>
+                    <h3 class="card-title">El velo societario no es un escudo de impunidad: Responsabilidad solidaria de administradores y socios</h3>
+                    <p class="card-excerpt">Análisis sobre la desestimación de la personalidad jurídica ante el uso fraudulento de estructuras corporativas para defraudar acreedores...</p>
+                </div>
+                <a href="articulo-velo-societario.html" class="btn-leer">
+                    <span>Leer análisis completo</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </article>
+
+            <!-- Artículo 6 -->
+            <article class="card-articulo">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span class="card-tag">Derecho Cambiario</span>
+                        <span class="card-date">Octubre 2026</span>
+                    </div>
+                    <h3 class="card-title">La trampa de los pagarés en blanco: Nulidad procesal y defensas ante cobros ejecutivos abusivos</h3>
+                    <p class="card-excerpt">Examen sobre el exceso en el mandato de llenado de títulos valores y las excepciones oponibles para frenar mandamientos de ejecución...</p>
+                </div>
+                <a href="articulo-pagares-blancos-nulos.html" class="btn-leer">
+                    <span>Leer análisis completo</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </article>
+
+
+        </div>
+
+
+
+
+
+
+    </main>
+
+    <footer>
+        <p>© 2026 <strong>Dr. Gabriel Torres V.</strong> — Abogado en Libre Ejercicio. Universidad de Cuenca. <br>Cuenca, Ecuador. <br><br>
+        <a href="index2.html" target="_blank" style="color: var(--accent-gold); text-decoration: underline;">Términos de Servicio y Política de Privacidad (LOPDP)</a></p>
+    </footer>
+
+</body>
+</html>

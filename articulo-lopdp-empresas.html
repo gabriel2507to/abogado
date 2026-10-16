@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cumplimiento y Debida Diligencia LOPDP | Dr. Gabriel Torres V.</title>
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #0b0f19;
+            --primary-navy: #111827;
+            --accent-gold: #d4af37;
+            --accent-gold-light: #f3e5ab;
+            --whatsapp-green: #25d366;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --bg-card: #1f2937;
+            --border-subtle: rgba(212, 175, 55, 0.2);
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, sans-serif; margin: 0; padding: 0; background-color: var(--primary-dark); color: var(--text-main); line-height: 1.9; }
+
+        /* BARRA DE PROGRESO DE LECTURA */
+        #progressBar {
+            position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--accent-gold), #fff); z-index: 9999; width: 0%; transition: width 0.1s ease;
+        }
+
+        /* NAVEGACIÓN COMPLETA */
+        nav {
+            display: flex; justify-content: space-between; align-items: center; padding: 20px 7%; background: rgba(11, 15, 25, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-subtle); position: sticky; top: 0; z-index: 1000;
+        }
+
+        .logo-brand { font-size: 1.25rem; font-weight: 800; color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo-brand span { color: var(--accent-gold); }
+
+        .btn-volver {
+            display: inline-flex; align-items: center; gap: 8px; background: rgba(212,175,55,0.1); color: var(--accent-gold); padding: 8px 18px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.85rem; border: 1px solid var(--border-subtle); transition: all 0.2s;
+        }
+        .btn-volver:hover { background: var(--accent-gold); color: var(--primary-dark); }
+
+        /* MAQUETACIÓN EDITORIAL (GRID) */
+        .article-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        /* BARRA LATERAL EDITORIAL (SIDEBAR) */
+        .article-sidebar {
+            position: sticky;
+            top: 100px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .author-avatar {
+            width: 70px; height: 70px; background: rgba(212,175,55,0.15); color: var(--accent-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 20px; border: 1px solid var(--border-subtle);
+        }
+
+        .sidebar-title { font-size: 1rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
+        .sidebar-subtitle { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 20px; }
+        .sidebar-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 20px 0; }
+        .sidebar-info-item { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .sidebar-info-item i { color: var(--accent-gold); }
+
+        .btn-sidebar-wpp {
+            display: block; width: 100%; text-align: center; background: var(--whatsapp-green); color: white; padding: 12px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 0.85rem; margin-top: 20px; box-shadow: 0 4px 15px rgba(37,211,102,0.3); transition: transform 0.2s;
+        }
+        .btn-sidebar-wpp:hover { transform: scale(1.02); }
+
+        /* CUERPO PRINCIPAL */
+        .article-main {
+            background: linear-gradient(135deg, rgba(31,41,55,0.4) 0%, rgba(17,24,39,0.6) 100%);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 28px;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .article-category { background: rgba(212,175,55,0.15); color: var(--accent-gold); padding: 6px 16px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 20px; }
+        .article-title { font-size: 2.2rem; font-weight: 900; color: var(--text-main); margin-bottom: 25px; line-height: 1.25; }
+        .article-lead { font-size: 1.05rem; color: var(--text-main); font-weight: 400; line-height: 1.8; margin-bottom: 35px; border-left: 4px solid var(--accent-gold); padding-left: 20px; background: rgba(212,175,55,0.03); padding-top: 12px; padding-bottom: 12px; border-radius: 0 12px 12px 0; }
+
+        .article-content p { font-size: 1.025rem; color: var(--text-muted); text-align: justify; margin-bottom: 25px; }
+        .article-content h2 { font-size: 1.35rem; color: var(--accent-gold); margin-top: 45px; margin-bottom: 20px; }
+        .article-content ul { padding-left: 20px; margin-bottom: 25px; color: var(--text-muted); }
+        .article-content li { margin-bottom: 12px; }
+
+        .doctrina-callout {
+            background: #0b0f19; border: 1px solid var(--border-subtle); border-left: 5px solid var(--accent-gold); padding: 25px 30px; border-radius: 16px; margin: 35px 0; font-style: italic; color: var(--text-main); font-size: 1.05rem; box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .cta-box { background: var(--primary-dark); border: 1px solid var(--border-subtle); padding: 40px; border-radius: 20px; margin-top: 60px; text-align: center; }
+
+        @media (max-width: 900px) {
+            .article-container { grid-template-columns: 1fr; gap: 30px; padding: 30px 15px; }
+            .article-sidebar { position: relative; top: 0; }
+            .article-main { padding: 25px; }
+            .article-title { font-size: 1.7rem; }
+        }
+
+        footer { background: #070a10; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 50px 20px; color: var(--text-muted); font-size: 0.85rem; margin-top: 80px; }
+    </style>
+</head>
+<body>
+
+    <div id="progressBar"></div>
+
+    <nav>
+        <a href="index.html" class="logo-brand">
+            <i class="fa-solid fa-balance-scale" style="color: var(--accent-gold);"></i> Dr. Gabriel Torres <span>V.</span>
+        </a>
+        <a href="articulos.html" class="btn-volver">
+            <i class="fa-solid fa-arrow-left"></i> Volver al Repositorio
+        </a>
+    </nav>
+
+    <div class="article-container">
+
+        <aside class="article-sidebar">
+            <div class="author-avatar"><i class="fa-solid fa-user-tie"></i></div>
+            <div class="sidebar-title">Dr. Gabriel Torres V.</div>
+            <div class="sidebar-subtitle">Abogado & Consultor Jurídico</div>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-info-item"><i class="fa-solid fa-graduation-cap"></i> Universidad de Cuenca</div>
+            <div class="sidebar-info-item"><i class="fa-regular fa-calendar"></i> Septiembre 2026</div>
+            <div class="sidebar-info-item"><i class="fa-solid fa-location-dot"></i> Cuenca, Ecuador</div>
+            <a href="https://wa.me/593900000000?text=Estimado%20Dr.%20Gabriel,%20leí%20su%20guía%20técnica%20sobre%20LOPDP%20corporativa" target="_blank" class="btn-sidebar-wpp">
+                <i class="fa-brands fa-whatsapp"></i> Consultar Caso
+            </a>
+        </aside>
+
+        <main class="article-main">
+            <span class="article-category">🏢 Derecho Societario & Cumplimiento LOPDP</span>
+            <h1 class="article-title">🛡️ Cumplimiento y debida diligencia corporativa: Guía técnica de la LOPDP para empresas, startups y negocios locales en Cuenca</h1>
+            
+            <div class="article-lead">
+                💡 Análisis especializado sobre los riesgos sancionatorios, la adecuación legal de bases de datos de clientes y empleados, y la implementación ineludible de adendas de confidencialidad laboral bajo la normativa ecuatoriana vigente.
+            </div>
+
+            <article class="article-content">
+                <p>
+                    📊 Con la plena exigibilidad del régimen sancionatorio de la Ley Orgánica de Protección de Datos Personales (LOPDP) en el Ecuador, el tratamiento de información en el ámbito empresarial ha dejado de ser un asunto puramente técnico para convertirse en un pilar crítico de <strong>responsabilidad corporativa y gobernanza legal</strong> ⚖️. Para las compañías, comercios y plataformas digitales en Cuenca, la falta de un programa formal de cumplimiento expone a los administradores a multas proporcionales al volumen de negocios y a graves pasivos reputacionales.
+                </p>
+
+                <h2>📋 1. Más allá del aviso legal web: Auditoría integral de flujos de datos</h2>
+                <p>
+                    Un error generalizado en la gerencia de las empresas locales es asumir que el cumplimiento normativo se agota al insertar un banner de cookies o una política de privacidad genérica en su sitio web. La debida diligencia corporativa exige mapear y auditar el ciclo de vida completo de los datos dentro de la organización 🔍:
+                </p>
+                <ul>
+                    <li><strong>Bases de datos comerciales y de facturación:</strong> Registro de clientes, historiales de compras, domicilios y números de contacto almacenados en sistemas POS, ERPs o hojas de cálculo descentralizadas.</li>
+                    <li><strong>Gestión de talento humano (Nómina):</strong> Expedientes de colaboradores, fichas médicas ocupacionales, cuentas bancarias y evaluaciones de desempeño custodiadas por el departamento de recursos humanos 👥.</li>
+                </ul>
+
+                <div class="doctrina-callout">
+                    "La protección de datos personales no es un requisito burocrático de forma, sino un sistema de gestión de riesgos que blinda a la empresa frente a auditorías de la Superintendencia y filtraciones corporativas." 🔒
+                </div>
+
+                <h2>✍️ 2. El eslabón crítico: Adendas a contratos laborales y secreto profesional</h2>
+                <p>
+                    En la mayoría de organizaciones, las brechas de seguridad y fugas de bases de datos de clientes provienen del interior de la empresa por falta de claridad en las obligaciones del personal. Adecuar los contratos de trabajo existentes mediante adendas especializadas de LOPDP y confidencialidad es indispensable 📄:
+                </p>
+                <ul>
+                    <li><strong>Cláusulas de limitación de acceso:</strong> Delimitación estricta de qué colaboradores pueden tratar datos sensibles según el principio de proporcionalidad y finalidad.</li>
+                    <li><strong>Obligación de reserva post-laboral:</strong> Extensión temporal del secreto profesional respecto a bases de datos de clientes, secretos comerciales y propiedad intelectual tras la terminación de la relación laboral ⏱️.</li>
+                    <li><strong>Protocolos de uso de dispositivos y mensajería:</strong> Regulación del manejo de canales corporativos (WhatsApp Business, correos institucionales y nubes compartidas).</li>
+                </ul>
+
+                <h2>⚡ 3. Mitigación preventiva y blindaje administrativo</h2>
+                <p>
+                    Implementar un programa de cumplimiento efectivo estructurado por profesionales en derecho corporativo e informático permite a las empresas de Cuenca operar con seguridad jurídica, atender ágilmente los derechos ARCO (Acceso, Rectificación, Cancelación, Oposición) de los titulares y demostrar ante la autoridad de control un <strong>actuar preventivo de debida diligencia calificada</strong> 🏛️💼.
+                </p>
+            </article>
+
+            <div class="cta-box">
+                <h3 style="color: white; margin-top: 0; font-size: 1.3rem;">🏢 ¿Su empresa en Cuenca cuenta con un programa de cumplimiento LOPDP certificado?</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px;">Diseñamos manuales de privacidad, registros de tratamientos, adendas laborales y políticas de seguridad a la medida.</p>
+                <a href="https://wa.me/593900000000?text=Hola%20Dr.%20Gabriel,%20deseo%20asesoría%20corporativa%20sobre%20cumplimiento%20LOPDP%20para%20mi%20empresa" target="_blank" style="background: var(--whatsapp-green); color: white; border: none; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 10px 25px rgba(37,211,102,0.3);">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Solicitar Consultoría Corporativa por WhatsApp
+                </a>
+            </div>
+        </main>
+
+    </div>
+
+    <footer>
+        <p>© 2026 <strong>Dr. Gabriel Torres V.</strong> — Abogado en Libre Ejercicio. Universidad de Cuenca. <br>Cuenca, Ecuador. <br><br>
+        <a href="index2.html" target="_blank" style="color: var(--accent-gold); text-decoration: underline;">Términos de Servicio y Política de Privacidad (LOPDP)</a></p>
+    </footer>
+
+    <script>
+        window.onscroll = function() {
+            let winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidencia Digital y Cadena de Custodia | Dr. Gabriel Torres V.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #0b0f19; --primary-navy: #111827; --accent-gold: #d4af37;
+            --whatsapp-green: #25d366; --text-main: #f3f4f6; --text-muted: #9ca3af;
+            --bg-card: #1f2937; --border-subtle: rgba(212, 175, 55, 0.2);
+        }
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, sans-serif; margin: 0; padding: 0; background-color: var(--primary-dark); color: var(--text-main); line-height: 1.9; }
+        #progressBar { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--accent-gold), #fff); z-index: 9999; width: 0%; transition: width 0.1s ease; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 7%; background: rgba(11, 15, 25, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-subtle); position: sticky; top: 0; z-index: 1000; }
+        .logo-brand { font-size: 1.25rem; font-weight: 800; color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo-brand span { color: var(--accent-gold); }
+        .btn-volver { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,175,55,0.1); color: var(--accent-gold); padding: 8px 18px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.85rem; border: 1px solid var(--border-subtle); transition: all 0.2s; }
+        .btn-volver:hover { background: var(--accent-gold); color: var(--primary-dark); }
+        .article-container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; display: grid; grid-template-columns: 280px 1fr; gap: 50px; align-items: start; }
+        .article-sidebar { position: sticky; top: 100px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 20px; padding: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+        .author-avatar { width: 70px; height: 70px; background: rgba(212,175,55,0.15); color: var(--accent-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 20px; border: 1px solid var(--border-subtle); }
+        .sidebar-title { font-size: 1rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
+        .sidebar-subtitle { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 20px; }
+        .sidebar-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 20px 0; }
+        .sidebar-info-item { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .sidebar-info-item i { color: var(--accent-gold); }
+        .btn-sidebar-wpp { display: block; width: 100%; text-align: center; background: var(--whatsapp-green); color: white; padding: 12px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 0.85rem; margin-top: 20px; box-shadow: 0 4px 15px rgba(37,211,102,0.3); transition: transform 0.2s; }
+        .btn-sidebar-wpp:hover { transform: scale(1.02); }
+        .article-main { background: linear-gradient(135deg, rgba(31,41,55,0.4) 0%, rgba(17,24,39,0.6) 100%); border: 1px solid rgba(255,255,255,0.06); border-radius: 28px; padding: 50px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .article-category { background: rgba(212,175,55,0.15); color: var(--accent-gold); padding: 6px 16px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 20px; }
+        .article-title { font-size: 2.2rem; font-weight: 900; color: var(--text-main); margin-bottom: 25px; line-height: 1.25; }
+        .article-lead { font-size: 1.05rem; color: var(--text-main); font-weight: 400; line-height: 1.8; margin-bottom: 35px; border-left: 4px solid var(--accent-gold); padding-left: 20px; background: rgba(212,175,55,0.03); padding-top: 12px; padding-bottom: 12px; border-radius: 0 12px 12px 0; }
+        .article-content p { font-size: 1.025rem; color: var(--text-muted); text-align: justify; margin-bottom: 25px; }
+        .article-content h2 { font-size: 1.35rem; color: var(--accent-gold); margin-top: 45px; margin-bottom: 20px; }
+        .article-content ul { padding-left: 20px; margin-bottom: 25px; color: var(--text-muted); }
+        .article-content li { margin-bottom: 12px; }
+        .doctrina-callout { background: #0b0f19; border: 1px solid var(--border-subtle); border-left: 5px solid var(--accent-gold); padding: 25px 30px; border-radius: 16px; margin: 35px 0; font-style: italic; color: var(--text-main); font-size: 1.05rem; box-shadow: inset 0 2px 10px rgba(0,0,0,0.3); }
+        .cta-box { background: var(--primary-dark); border: 1px solid var(--border-subtle); padding: 40px; border-radius: 20px; margin-top: 60px; text-align: center; }
+        @media (max-width: 900px) { .article-container { grid-template-columns: 1fr; gap: 30px; padding: 30px 15px; } .article-sidebar { position: relative; top: 0; } .article-main { padding: 25px; } .article-title { font-size: 1.7rem; } }
+        footer { background: #070a10; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 50px 20px; color: var(--text-muted); font-size: 0.85rem; margin-top: 80px; }
+    </style>
+</head>
+<body>
+    <div id="progressBar"></div>
+    <nav>
+        <a href="index.html" class="logo-brand"><i class="fa-solid fa-balance-scale" style="color: var(--accent-gold);"></i> Dr. Gabriel Torres <span>V.</span></a>
+        <a href="articulos.html" class="btn-volatile btn-volver"><i class="fa-solid fa-arrow-left"></i> Volver al Repositorio</a>
+    </nav>
+    <div class="article-container">
+        <aside class="article-sidebar">
+            <div class="author-avatar"><i class="fa-solid fa-user-tie"></i></div>
+            <div class="sidebar-title">Dr. Gabriel Torres V.</div>
+            <div class="sidebar-subtitle">Abogado & Consultor Jurídico</div>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-info-item"><i class="fa-solid fa-graduation-cap"></i> Universidad de Cuenca</div>
+            <div class="sidebar-info-item"><i class="fa-regular fa-calendar"></i> Octubre 2026</div>
+            <a href="https://wa.me/593900000000?text=Hola%20Dr.%20Gabriel,%20deseo%20asesoría%20sobre%20prueba%20digital" target="_blank" class="btn-sidebar-wpp"><i class="fa-brands fa-whatsapp"></i> Consultar Caso</a>
+        </aside>
+        <main class="article-main">
+            <span class="article-category">📱 Derecho Probatorio & Evidencia Digital</span>
+            <h1 class="article-title">🔍 Más allá de la captura de pantalla: Validez procesal, peritaje informático y cadena de custodia de chats de WhatsApp en el COGEP</h1>
+            <div class="article-lead">
+                💡 Una simple fotografía a la pantalla de un celular con mensajes de WhatsApp carece de eficacia probatoria plena si no se somete a los estándares de mismidad, integridad y peritaje informático exigidos en los tribunales ecuatorianos.
+            </div>
+            <article class="article-content">
+                <p>
+                    💬 En la litigación civil, mercantil y laboral moderna en Cuenca, los chats de WhatsApp, correos electrónicos y notas de voz se han convertido en la prueba reina para demostrar deudas, incumplimientos contractuales o daño moral. Sin embargo, un error procesal frecuente es pretender que los jueces valoren capturas de pantalla (*screenshots*) impresas en papel sin el debido respaldo técnico ⚠️.
+                </p>
+                <h2>⚖️ 1. El mito de la captura de pantalla como prueba tasada</h2>
+                <p>
+                    Bajo el Código Orgánico General de Procesos (COGEP), los documentos digitales y mensajes de datos gozan de presunción de autenticidad siempre que se garantice su origen e inalterabilidad. Una imagen suelta es fácilmente objetable por la contraparte bajo alegaciones de manipulación mediante software de edición 🖥️.
+                </p>
+                <div class="doctrina-callout">
+                    "La prueba digital no vale por lo que muestra la pantalla, sino por la trazabilidad forense de sus metadatos y el informe pericial debidamente acreditado ante el Consejo de la Judicatura." 🔍
+                </div>
+                <h2>🛠️ 2. Protocolos forenses para asegurar la convicción judicial</h2>
+                <p>
+                    Para blindar una conversación digital y evitar que sea desechada en audiencia de juicio, la práctica procesal de élite exige:
+                </p>
+                <ul>
+                    <li><strong>📑 Reconocimiento notarial de dispositivos:</strong> Diligencia previa en notaría para certificar la existencia física de los mensajes directamente en el terminal electrónico.</li>
+                    <li><strong>🔬 Peritaje informático forense:</strong> Extracción certificada de bases de datos (*SQLite*) y hash criptográfico que garantice que el archivo no ha sufrido alteraciones temporales.</li>
+                </ul>
+            </article>
+            <div class="cta-box">
+                <h3 style="color: white; margin-top: 0; font-size: 1.3rem;">📱 ¿Tiene evidencia digital clave y teme que se la rechacen en juicio?</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px;">Estructuramos la cadena de custodia y el respaldo pericial de sus pruebas electrónicas con rigor procesal.</p>
+                <a href="https://wa.me/593900000000?text=Hola%20Dr.%20Gabriel,%20necesito%20peritaje%20y%20asesoría%20sobre%20prueba%20digital" target="_blank" style="background: var(--whatsapp-green); color: white; border: none; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 10px 25px rgba(37,211,102,0.3);">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Consultar por WhatsApp
+                </a>
+            </div>
+        </main>
+    </div>
+    <footer>
+        <p>© 2026 <strong>Dr. Gabriel Torres V.</strong> — Abogado en Libre Ejercicio. Universidad de Cuenca. <br>Cuenca, Ecuador.<br><br>
+        <a href="index2.html" target="_blank" style="color: var(--accent-gold); text-decoration: underline;">Términos de Servicio y Política de Privacidad (LOPDP)</a></p>
+    </footer>
+    <script>window.onscroll = function() { let s = document.documentElement.scrollTop || document.body.scrollTop, h = document.documentElement.scrollHeight - document.documentElement.clientHeight; document.getElementById("progressBar").style.width = (s / h) * 100 + "%"; };</script>
+</body>
+</html>

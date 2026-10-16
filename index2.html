@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos de Servicio, Honorarios y Privacidad (LOPDP) | Dr. Gabriel Torres V.</title>
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #0b0f19;
+            --primary-navy: #111827;
+            --accent-gold: #d4af37;
+            --accent-gold-light: #f3e5ab;
+            --whatsapp-green: #25d366;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --bg-card: #1f2937;
+            --border-subtle: rgba(212, 175, 55, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-dark);
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        /* NAVEGACIÓN ÉLITE */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 7%;
+            background: rgba(11, 15, 25, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-subtle);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .badge-elite-legal {
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+            padding: 6px 16px;
+            border-radius: 50px;
+            border: 1px solid var(--border-subtle);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* CONTENEDOR PRINCIPAL LEGAL */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .legal-hero {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 45px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .legal-hero-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 20px auto;
+            border: 1px solid var(--border-subtle);
+        }
+
+        h1 {
+            font-size: 2.1rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .meta-legal {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* TARJETAS DE CONTENIDO LEGAL ROBUSTAS */
+        .legal-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .legal-card h2 {
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            margin-top: 0;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 15px;
+        }
+
+        .legal-card h3 {
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        .legal-card p, .legal-card li {
+            font-size: 0.925rem;
+            color: var(--text-muted);
+            text-align: justify;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .legal-card ul {
+            padding-left: 20px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+
+        .legal-card strong {
+            color: var(--text-main);
+        }
+
+        .callout-box {
+            background: #0b0f19;
+            border-left: 4px solid var(--accent-gold);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        /* DERECHOS ARCO */
+        .arco-box {
+            background: #0b0f19;
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .email-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.05);
+            padding: 10px 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-top: 15px;
+        }
+
+        .email-pill a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #070a10;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer strong {
+            color: var(--text-main);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6rem; }
+            .legal-card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <nav>
+        <a href="index.html" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i> Volver al Portal Principal
+        </a>
+        <span class="badge-elite-legal">
+            <i class="fa-solid fa-shield-halved"></i> Marco Normativo
+        </span>
+    </nav>
+
+    <main>
+        <!-- HERO LEGAL -->
+        <div class="legal-hero">
+            <div class="legal-hero-icon">
+                <i class="fa-solid fa-file-shield"></i>
+            </div>
+            <h1>Términos de Servicio, Honorarios, Reembolsos & Privacidad</h1>
+            <div class="meta-legal">
+                <span><i class="fa-solid fa-user-tie" style="color: var(--accent-gold);"></i> Dr. Gabriel Torres V.</span>
+                <span>•</span>
+                <span><i class="fa-solid fa-location-dot" style="color: var(--accent-gold);"></i> Cuenca, Ecuador</span>
+                <span>•</span>
+                <span>Marco Legal Vigente 2026</span>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 1: CONDICIONES DE SERVICIO -->
+        <div class="legal-card">
+            <h2><i class="fa-solid fa-gavel"></i> 1. Condiciones Generales del Servicio Jurídico</h2>
+            <p>
+                Los presentes Términos y Condiciones regulan de manera vinculante la relación profesional entre el <strong>Dr. Gabriel Torres V.</strong> (en adelante "El Profesional") y cualquier persona natural o jurídica (en adelante "El Cliente") que utilice este sitio web, solicite presupuestos mediante simuladores interactivos o contrate servicios de asesoría y patrocinio legal.
+            </p>
+            <p>
+                El uso de este portal web, así como el envío de formularios o mensajes a través de canales digitales, presupone la lectura íntegra y la aceptación formal de todas las estipulaciones detalladas en este documento.
+            </p>
+        </div>
+
+        <!-- SECCIÓN 2: HONORARIOS Y POLÍTICA DE REEMBOLSOS -->
+        <div class="legal-card">
+            <h2><i class="fa-solid fa-file-invoice-dollar"></i> 2. Política de Honorarios y Reembolsos</h2>
+            
+            <h3>2.1. Estimaciones y Cotizaciones</h3>
+            <p>
+                Las tarifas visualizadas en la calculadora de inversión legal o en los cotizadores interactivos de este sitio web tienen un carácter <strong>estrictamente estimativo y referencial</strong>. No constituyen una oferta de contrato definitiva ni obligan a El Profesional hasta que se suscriba la minuta de prestación de servicios profesionales correspondiente.
+            </p>
+
+            <h3>2.2. Anticipos y Retainers</h3>
+            <p>
+                Toda gestión judicial, societaria o redacción de instrumentos de alta complejidad requiere el pago de un anticipo o provisión de fondos (anticipo de honorarios) para el inicio de las diligencias. 
+            </p>
+
+            <h3>2.3. Política Estricta de Reembolsos</h3>
+            <p>
+                Debido a la naturaleza intelectual, de estrategia y de tiempo invertido en la asesoría legal, los honorarios profesionales devengados por análisis de casos, emisión de dictámenes, redacción de escritos o gestiones ya ejecutadas <strong>no son reembolsables</strong> bajo ninguna circunstancia.
+            </p>
+            <p>
+                En caso de terminación anticipada de la relación profesional por mutuo acuerdo o decisión justificada del cliente:
+            </p>
+            <ul>
+                <li>Se liquidarán y descontarán los honorarios correspondientes al porcentaje de avance y trabajo intelectual realizado hasta la fecha de notificación formal.</li>
+                <li>Los valores entregados en concepto de tasas judiciales, aranceles notariales, de registros o peritajes que no hayan sido ejecutados podrán ser devueltos, siempre y cuando no se hubieren incurrido en compromisos previos con terceros.</li>
+            </ul>
+        </div>
+
+        <!-- SECCIÓN 3: OBLIGACIONES Y RESPONSABILIDADES DEL CLIENTE -->
+        <div class="legal-card">
+            <h2><i class="fa-solid fa-user-check"></i> 3. Obligaciones y Responsabilidades de El Cliente</h2>
+            <p>
+                Para garantizar el éxito y la rigurosidad en el manejo de cualquier causa o trámite, El Cliente se obliga expresamente a lo siguiente:
+            </p>
+            <ul>
+                <li><strong>Veracidad documental y testimonial:</strong> Proporcionar información fidedigna, documentos auténticos, completos y oportunos. El Profesional no asume responsabilidad civil o penal por ocultamiento de información, falsedad documental o dolo por parte del cliente.</li>
+                <li><strong>Colaboración procesal:</strong> Comparecer puntualmente a las citaciones judiciales, notariales o administrativas que requieran su presencia física o telemática.</li>
+                <li><strong>Sustento de gastos extraordinarios:</strong> Proveer de manera oportuna los fondos necesarios para cubrir tasas, expensas judiciales, viáticos o rubros logísticos ajenos a los honorarios profesionales.</li>
+            </ul>
+        </div>
+
+        <!-- SECCIÓN 4: LIMITACIÓN DE RESPONSABILIDAD -->
+        <div class="legal-card">
+            <h2><i class="fa-solid fa-shield-halved"></i> 4. Limitación de Responsabilidad Profesional</h2>
+            <p>
+                El ejercicio de la abogacía en el Ecuador se rige por obligaciones de <em>medios y no de resultados</em>. En consecuencia:
+            </p>
+            <p>
+                <strong>4.1. Sentencias y Fallos:</strong> El Profesional compromete su máxima capacidad técnica, diligencia y experiencia en el patrocinio, mas no garantiza de forma absoluta un fallo favorable en estrados judiciales, toda vez que las resoluciones dependen de la valoración soberana de los jueces y tribunales competentes.
+            </p>
+            <p>
+                <strong>4.2. Disponibilidad del Sistema:</strong> El Profesional no se hace responsable por interrupciones temporales, fallas de conectividad o demoras en la transmisión de datos a través de los canales digitales de contacto que escapen de su control técnico directo.
+            </p>
+        </div>
+
+        <!-- SECCIÓN 5: SECRETO PROFESIONAL -->
+        <div class="legal-card">
+            <h2><i class="fa-solid fa-user-shield"></i> 5. Secreto Profesional y Confidencialidad</h2>
+            <p>
+                Toda la documentación, chats, audios, correos electrónicos y antecedentes entregados por El Cliente están amparados bajo el riguroso <strong>secreto profesional</strong> de la abogacía ecuatoriana, garantizando que dichos elementos jamás serán revelados a terceros, salvo mandato judicial expreso o autorización escrita del titular.
+            </p>
+            <div class="callout-box">
+                <i class="fa-solid fa-lock" style="color: var(--accent-gold);"></i> <strong>Protección Absoluta:</strong> Sus comunicaciones con nuestro despacho constituyen materia reservada por ley.
+            </div>
+        </div>
+
+        <!-- SECCIÓN 6: PROTECCIÓN DE DATOS (LOPDP) -->
+        <div class="legal-card">
+            <h2><i class="fa-solid fa-user-lock"></i> 6. Privacidad y Protección de Datos Personales (LOPDP)</h2>
+            <p>
+                En estricto apego a la <strong>Ley Orgánica de Protección de Datos Personales (LOPDP)</strong> de la República del Ecuador, los datos personales recopilados mediante este sitio web son tratados con absoluta seguridad, bajo los principios de licitud, lealtad y transparencia.
+            </p>
+            
+            <div class="arco-box">
+                <h3 style="color: var(--text-main); margin-top: 0; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-key" style="color: var(--accent-gold);"></i> Ejercicio de Derechos ARCO
+                </h3>
+                <p style="margin-bottom: 10px;">
+                    El titular de los datos personales puede ejercer en cualquier momento sus derechos de Acceso, Rectificación, Actualización, Eliminación y Oposición enviando una solicitud formal al canal oficial:
+                </p>
+                <div class="email-pill">
+                    <i class="fa-solid fa-envelope" style="color: var(--accent-gold);"></i>
+                    <span>Correo de Privacidad: <a href="mailto:contacto@gabrieltorreslegal.com">contacto@gabrieltorreslegal.com</a></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 7: JURISDICCIÓN -->
+        <div class="legal-card" style="text-align: center;">
+            <h2><i class="fa-solid fa-scale-balanced"></i> 7. Legislación Aplicable y Jurisdicción</h2>
+            <p style="text-align: center; margin: 0;">
+                Cualquier controversia, divergencia o reclamación derivada de la interpretación o ejecución de los presentes términos o de la prestación de los servicios profesionales se someterá a la legislación ecuatoriana y a la competencia exclusiva de los jueces y tribunales de la ciudad de <strong>Cuenca, Ecuador</strong>.
+            </p>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 <strong>Dr. Gabriel Torres V.</strong> — Abogado en Libre Ejercicio. Universidad de Cuenca. <br>Cuenca, Ecuador.</p>
+    </footer>
+
+</body>
+</html>
