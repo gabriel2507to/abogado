@@ -6,7 +6,7 @@
     <title>Dr. Gabriel Torres V. | Abogacía Estratégica & Tecnología Jurídica</title>
     <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
+   <style>
         :root {
             --primary-dark: #0b0f19;
             --primary-navy: #111827;
@@ -17,6 +17,12 @@
             --text-muted: #9ca3af;
             --bg-card: #1f2937;
             --border-subtle: rgba(212, 175, 55, 0.2);
+        }
+
+        /* PREVENIR DESPLAZAMIENTO HORIZONTAL EN MÓVIL */
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
         }
 
         * {
@@ -424,248 +430,274 @@
             color: var(--text-main);
         }
 
+        /* CONTENEDOR FLOTANTE PRINCIPAL (ELEVADO SOBRE EL BOTÓN DE WHATSAPP) */
+        .master-float-container {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: flex-end;
+            gap: 12px;
+        }
+
+        /* EL BOTÓN PRINCIPAL */
+        .master-float-btn {
+            width: 60px;
+            height: 60px;
+            background: #111827;
+            color: #d4af37;
+            border: 2px solid #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 10000;
+        }
+
+        .master-float-btn:hover {
+            transform: scale(1.1);
+            background: #d4af37;
+            color: #0b0f19;
+        }
+
+        /* TOOLTIP DEL BOTÓN PRINCIPAL (CORREGIDO SIN ROTACIÓN) */
+        .master-float-btn::before {
+            content: "Herramientas";
+            position: absolute;
+            right: 75px;
+            background: #1f2937;
+            color: #f3f4f6;
+            padding: 6px 14px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 8px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transform: none !important;
+        }
+
+        .master-float-container:hover .master-float-btn::before {
+            opacity: 1;
+        }
+
+        /* MENÚ DESPLEGABLE DE OPCIONES ALINEADO A LA DERECHA */
+        .float-menu-options {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .master-float-container.active .float-menu-options {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        /* CADA OPCIÓN DEL MENÚ CON NOMBRES CORTOS */
+        .float-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #1f2937;
+            color: #f3f4f6;
+            padding: 10px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .float-option:hover {
+            background: #d4af37;
+            color: #0b0f19;
+            transform: translateX(-5px);
+            border-color: #fff;
+        }
+
+        .float-option i {
+            color: #d4af37;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+
+        .float-option:hover i {
+            color: #0b0f19;
+        }
+
+        /* ESTILOS DE LOS MODALES */
+        .legal-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 999999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #111827;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 680px;
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            position: relative;
+            color: #f3f4f6;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px; right: 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #9ca3af;
+            width: 35px; height: 35px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .modal-close:hover { background: #d4af37; color: #0b0f19; }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #d4af37;
+            margin-bottom: 10px;
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        .modal-subtitle {
+            font-size: 0.85rem;
+            color: #9ca3af;
+            margin-bottom: 25px;
+        }
+
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: #d4af37; margin-bottom: 6px; }
+        .form-control {
+            width: 100%;
+            background: #0b0f19;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 10px 14px;
+            border-radius: 12px;
+            color: #f3f4f6;
+            font-size: 0.9rem;
+        }
+        .form-control:focus { outline: none; border-color: #d4af37; }
+
+        /* CAJA DE VISTA PREVIA DEL CONTRATO */
+        .contract-preview-box {
+            background: #070a10;
+            border: 1px dashed rgba(212, 175, 55, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            color: #d1d5db;
+            line-height: 1.6;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .btn-action-modal {
+            background: #25d366;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            margin-top: 20px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            box-shadow: 0 10px 20px rgba(37,211,102,0.3);
+        }
+        .btn-action-modal:hover { background: #20ba5a; transform: scale(1.01); }
+
+        .calc-result-box {
+            background: #0b0f19;
+            border: 1px solid rgba(212,175,55,0.3);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .flash-news-item {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 3px solid #d4af37;
+            padding: 15px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 15px;
+        }
+        .flash-date { font-size: 0.75rem; color: #d4af37; font-weight: 700; text-transform: uppercase; }
+        .flash-text { font-size: 0.9rem; color: #9ca3af; margin-top: 5px; }
+
+        /* REGLAS RESPONSIVAS PARA PANTALLAS PEQUEÑAS Y CELULARES */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.3rem; }
             .cotizador-layout { grid-template-columns: 1fr; }
             .nav-links { display: none; }
         }
 
+        @media (max-width: 480px) {
+            .whatsapp-fixed {
+                bottom: 15px;
+                right: 15px;
+                width: 50px;
+                height: 50px;
+                font-size: 26px;
+            }
 
+            .master-float-container {
+                bottom: 75px;
+                right: 15px;
+            }
 
-/* CONTENEDOR FLOTANTE PRINCIPAL (ELEVADO SOBRE EL BOTÓN DE WHATSAPP) */
-    .master-float-container {
-        position: fixed;
-        bottom: 110px; /* Eleva el menú para que quede exactamente encima de WhatsApp */
-        right: 30px;
-        z-index: 99999; /* Máxima prioridad visual */
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: flex-end;
-        gap: 12px;
-    }
+            .master-float-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
 
-    /* EL BOTÓN PRINCIPAL */
-    .master-float-btn {
-        width: 60px;
-        height: 60px;
-        background: #111827;
-        color: #d4af37;
-        border: 2px solid #d4af37;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        cursor: pointer;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        z-index: 10000;
-    }
-
-    .master-float-btn:hover {
-        transform: scale(1.1) rotate(15deg);
-        background: #d4af37;
-        color: #0b0f19;
-    }
-
-    /* TOOLTIP DEL BOTÓN PRINCIPAL */
-    .master-float-btn::before {
-        content: "Herramientas";
-        position: absolute;
-        right: 70px;
-        background: #1f2937;
-        color: #f3f4f6;
-        padding: 6px 14px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        border-radius: 8px;
-        white-space: nowrap;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.2s ease;
-        border: 1px solid rgba(212, 175, 55, 0.2);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-
-    .master-float-container:hover .master-float-btn::before {
-        opacity: 1;
-    }
-
-    /* MENÚ DESPLEGABLE DE OPCIONES */
-    .float-menu-options {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(20px);
-        transition: all 0.3s ease;
-    }
-
-    .master-float-container.active .float-menu-options {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateY(0);
-    }
-
-    /* CADA OPCIÓN DEL MENÚ CON NOMBRES CORTOS */
-    .float-option {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        background: #1f2937;
-        color: #f3f4f6;
-        padding: 10px 18px;
-        border-radius: 50px;
-        text-decoration: none;
-        font-size: 0.85rem;
-        font-weight: 700;
-        border: 1px solid rgba(212, 175, 55, 0.3);
-        box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-        cursor: pointer;
-        transition: all 0.2s;
-        white-space: nowrap;
-    }
-
-    .float-option:hover {
-        background: #d4af37;
-        color: #0b0f19;
-        transform: translateX(-5px);
-        border-color: #fff;
-    }
-
-    .float-option i {
-        color: #d4af37;
-        font-size: 1rem;
-        transition: color 0.2s;
-    }
-
-    .float-option:hover i {
-        color: #0b0f19;
-    }
-
-    /* ESTILOS DE LOS MODALES */
-    .legal-modal {
-        display: none;
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(11, 15, 25, 0.85);
-        backdrop-filter: blur(8px);
-        z-index: 999999;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-    }
-
-    .modal-content {
-        background: #111827;
-        border: 1px solid rgba(212, 175, 55, 0.3);
-        border-radius: 24px;
-        width: 100%;
-        max-width: 680px;
-        padding: 40px;
-        box-shadow: 0 25px 50px rgba(0,0,0,0.6);
-        position: relative;
-        color: #f3f4f6;
-        max-height: 90vh;
-        overflow-y: auto;
-    }
-
-    .modal-close {
-        position: absolute;
-        top: 20px; right: 20px;
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.1);
-        color: #9ca3af;
-        width: 35px; height: 35px;
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-    .modal-close:hover { background: #d4af37; color: #0b0f19; }
-
-    .modal-title {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: #d4af37;
-        margin-bottom: 10px;
-        display: flex; align-items: center; gap: 10px;
-    }
-
-    .modal-subtitle {
-        font-size: 0.85rem;
-        color: #9ca3af;
-        margin-bottom: 25px;
-    }
-
-    .form-group { margin-bottom: 15px; }
-    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: #d4af37; margin-bottom: 6px; }
-    .form-control {
-        width: 100%;
-        background: #0b0f19;
-        border: 1px solid rgba(255,255,255,0.1);
-        padding: 10px 14px;
-        border-radius: 12px;
-        color: #f3f4f6;
-        font-size: 0.9rem;
-    }
-    .form-control:focus { outline: none; border-color: #d4af37; }
-
-    /* CAJA DE VISTA PREVIA DEL CONTRATO */
-    .contract-preview-box {
-        background: #070a10;
-        border: 1px dashed rgba(212, 175, 55, 0.4);
-        padding: 20px;
-        border-radius: 12px;
-        margin-top: 20px;
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 0.85rem;
-        color: #d1d5db;
-        line-height: 1.6;
-        max-height: 200px;
-        overflow-y: auto;
-    }
-
-    .btn-action-modal {
-        background: #25d366;
-        color: white;
-        border: none;
-        width: 100%;
-        padding: 14px;
-        border-radius: 12px;
-        font-weight: 800;
-        font-size: 0.95rem;
-        cursor: pointer;
-        transition: transform 0.2s, background 0.2s;
-        margin-top: 20px;
-        display: flex; align-items: center; justify-content: center; gap: 10px;
-        box-shadow: 0 10px 20px rgba(37,211,102,0.3);
-    }
-    .btn-action-modal:hover { background: #20ba5a; transform: scale(1.01); }
-
-    .calc-result-box {
-        background: #0b0f19;
-        border: 1px solid rgba(212,175,55,0.3);
-        padding: 20px;
-        border-radius: 12px;
-        margin-top: 20px;
-        text-align: center;
-    }
-
-    .flash-news-item {
-        background: rgba(212, 175, 55, 0.05);
-        border-left: 3px solid #d4af37;
-        padding: 15px;
-        border-radius: 0 12px 12px 0;
-        margin-bottom: 15px;
-    }
-    .flash-date { font-size: 0.75rem; color: #d4af37; font-weight: 700; text-transform: uppercase; }
-    .flash-text { font-size: 0.9rem; color: #9ca3af; margin-top: 5px; }
-
-
-    </style>
+            .float-option {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+                max-width: calc(100vw - 40px);
+            }
+        }
+</style>
 </head>
 <body>
 
@@ -874,76 +906,75 @@
     </section>
 
 <!-- ================================================================= -->
-<!-- SECCIÓN VANGUARDIA LEGALTECH: LO QUE LAS FIRMAS TRADICIONALES IGNORAN -->
+<!-- SECCIÓN VANGUARDIA LEGALTECH: RESPONSIVA PARA MÓVIL Y DESKTOP -->
 <!-- ================================================================= -->
 
-<section id="vanguardia-legal" style="padding: 90px 20px; background: #0b0f19; border-top: 1px solid rgba(212,175,55,0.2); border-bottom: 1px solid rgba(212,175,55,0.2);">
+<section id="vanguardia-legal" style="padding: 60px 20px; background: #0b0f19; border-top: 1px solid rgba(212,175,55,0.2); border-bottom: 1px solid rgba(212,175,55,0.2);">
     <div style="max-width: 1100px; margin: 0 auto;">
         
         <!-- Encabezado -->
-        <div style="text-align: center; margin-bottom: 60px;">
-            <span style="background: rgba(212,175,55,0.15); color: #d4af37; padding: 6px 18px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; border: 1px solid rgba(212,175,55,0.3);">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <span style="background: rgba(212,175,55,0.15); color: #d4af37; padding: 6px 18px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; border: 1px solid rgba(212,175,55,0.3); display: inline-block; margin-bottom: 10px;">
                 Innovación & Tecnología Forense
             </span>
-            <h2 style="font-size: 2.2rem; font-weight: 900; color: #f3f4f6; margin-top: 20px; margin-bottom: 15px;">
+            <h2 style="font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 900; color: #f3f4f6; margin-top: 10px; margin-bottom: 15px; line-height: 1.2;">
                 Áreas Críticas que las Firmas Tradicionales Ignoran
             </h2>
-            <p style="font-size: 1.05rem; color: #9ca3af; max-width: 850px; margin: 0 auto; line-height: 1.7;">
+            <p style="font-size: clamp(0.9rem, 2.5vw, 1.05rem); color: #9ca3af; max-width: 850px; margin: 0 auto; line-height: 1.6;">
                 La economía digital en Ecuador avanza más rápido que las notarías. Mientras los escritorios convencionales se limitan a la teoría, ofrezco blindaje técnico y procesal en los cuatro grandes vacíos legales de la era moderna:
             </p>
         </div>
 
-        <!-- Grid de los 4 Pilares -->
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
+        <!-- Grid Adaptable Automático (1 columna en celulares, 2 en pantallas anchas) -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
             
             <!-- Pilar 1 -->
-            <div style="background: #111827; border: 1px solid rgba(212,175,55,0.3); border-radius: 20px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.5);">
-                <div style="font-size: 2rem; margin-bottom: 15px;">🤖</div>
-                <h3 style="font-size: 1.25rem; font-weight: 800; color: #d4af37; margin-bottom: 12px;">1. Responsabilidad Legal en Integración de Inteligencia Artificial (IA)</h3>
-                <p style="font-size: 0.9rem; color: #9ca3af; line-height: 1.7; margin: 0;">
+            <div style="background: #111827; border: 1px solid rgba(212,175,55,0.3); border-radius: 20px; padding: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.5);">
+                <div style="font-size: 2rem; margin-bottom: 12px;">🤖</div>
+                <h3 style="font-size: 1.15rem; font-weight: 800; color: #d4af37; margin-top: 0; margin-bottom: 10px; line-height: 1.3;">1. Responsabilidad Legal en Integración de Inteligencia Artificial (IA)</h3>
+                <p style="font-size: 0.88rem; color: #9ca3af; line-height: 1.6; margin: 0;">
                     Asesoramiento especializado para PyMEs y desarrolladores que integran LLMs y APIs corporativas. Determinamos regímenes de propiedad intelectual sobre código o contenidos generados por IA, limitación de responsabilidad frente a "alucinaciones" del modelo y cumplimiento estricto con los estándares de privacidad de la LOPDP.
                 </p>
             </div>
 
             <!-- Pilar 2 -->
-            <div style="background: #111827; border: 1px solid rgba(212,175,55,0.3); border-radius: 20px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.5);">
-                <div style="font-size: 2rem; margin-bottom: 15px;">🔗</div>
-                <h3 style="font-size: 1.25rem; font-weight: 800; color: #d4af37; margin-bottom: 12px;">2. Criptoactivos, Stablecoins y el Marco UAFE / SRI</h3>
-                <p style="font-size: 0.9rem; color: #9ca3af; line-height: 1.7; margin: 0;">
+            <div style="background: #111827; border: 1px solid rgba(212,175,55,0.3); border-radius: 20px; padding: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.5);">
+                <div style="font-size: 2rem; margin-bottom: 12px;">🔗</div>
+                <h3 style="font-size: 1.15rem; font-weight: 800; color: #d4af37; margin-top: 0; margin-bottom: 10px; line-height: 1.3;">2. Criptoactivos, Stablecoins y el Marco UAFE / SRI</h3>
+                <p style="font-size: 0.88rem; color: #9ca3af; line-height: 1.6; margin: 0;">
                     Estructuración jurídica para comercios y plataformas que operan con pagos en criptomonedas o pasarelas descentralizadas P2P. Aseguramos la trazabilidad legal y el alineamiento normativo preventivo ante los controles antilavado de la UAFE y las obligaciones tributarias nacionales.
                 </p>
             </div>
 
             <!-- Pilar 3 -->
-            <div style="background: #111827; border: 1px solid rgba(212,175,55,0.3); border-radius: 20px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.5);">
-                <div style="font-size: 2rem; margin-bottom: 15px;">🚨</div>
-                <h3 style="font-size: 1.25rem; font-weight: 800; color: #d4af37; margin-bottom: 12px;">3. Protocolo de Respuesta a Ciberataques y Ransomware</h3>
-                <p style="font-size: 0.9rem; color: #9ca3af; line-height: 1.7; margin: 0;">
-                    Asistencia jurídica urgente (*Incident Response*) para empresas que sufren hackeos, secuestro de bases de datos o filtraciones masivas de información. Redacción de notificaciones obligatorias de brechas de seguridad ante la Superintendencia de Protección de Datos y blindaje frente a demandas de usuarios afectados.
+            <div style="background: #111827; border: 1px solid rgba(212,175,55,0.3); border-radius: 20px; padding: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.5);">
+                <div style="font-size: 2rem; margin-bottom: 12px;">🚨</div>
+                <h3 style="font-size: 1.15rem; font-weight: 800; color: #d4af37; margin-top: 0; margin-bottom: 10px; line-height: 1.3;">3. Protocolo de Respuesta a Ciberataques y Ransomware</h3>
+                <p style="font-size: 0.88rem; color: #9ca3af; line-height: 1.6; margin: 0;">
+                    Asistencia jurídica urgente (<em>Incident Response</em>) para empresas que sufren hackeos, secuestro de bases de datos o filtraciones masivas de información. Redacción de notificaciones obligatorias de brechas de seguridad ante la Superintendencia de Protección de Datos y blindaje frente a demandas de usuarios afectados.
                 </p>
             </div>
 
             <!-- Pilar 4 -->
-            <div style="background: #111827; border: 1px solid rgba(212,175,55,0.3); border-radius: 20px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.5);">
-                <div style="font-size: 2rem; margin-bottom: 15px;">⚖️</div>
-                <h3 style="font-size: 1.25rem; font-weight: 800; color: #d4af37; margin-bottom: 12px;">4. Prueba Electrónica Avanzada bajo el COGEP</h3>
-                <p style="font-size: 0.9rem; color: #9ca3af; line-height: 1.7; margin: 0;">
+            <div style="background: #111827; border: 1px solid rgba(212,175,55,0.3); border-radius: 20px; padding: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.5);">
+                <div style="font-size: 2rem; margin-bottom: 12px;">⚖️</div>
+                <h3 style="font-size: 1.15rem; font-weight: 800; color: #d4af37; margin-top: 0; margin-bottom: 10px; line-height: 1.3;">4. Prueba Electrónica Avanzada bajo el COGEP</h3>
+                <p style="font-size: 0.88rem; color: #9ca3af; line-height: 1.6; margin: 0;">
                     Litigio estratégico y auditoría forense digital en tribunales de Cuenca. Diseñamos la cadena de custodia idónea y los protocolos periciales para asegurar la admisibilidad judicial de chats de mensajería (WhatsApp), correos electrónicos y contratos firmados electrónicamente como títulos ejecutivos válidos.
                 </p>
             </div>
 
         </div>
 
-        <!-- Botón de acción directo -->
-        <div style="text-align: center; margin-top: 50px;">
-            <a href="https://wa.me/593900000000?text=Hola%20Dr.%20Gabriel,%20necesito%20asesoría%20avanzada%20en%20tecnología%20y%20derecho%20digital" target="_blank" style="background: #d4af37; color: #0b0f19; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 10px 25px rgba(212,175,55,0.3);">
-                <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Consultar con un Especialista LegalTech
+        <!-- Botón de Acción Adaptable -->
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="https://wa.me/593900000000?text=Hola%20Dr.%20Gabriel,%20necesito%20asesoría%20avanzada%20en%20tecnología%20y%20derecho%20digital" target="_blank" style="background: #d4af37; color: #0b0f19; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.9rem; display: inline-flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 10px 25px rgba(212,175,55,0.3); max-width: 100%; white-space: normal; text-align: center;">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem; flex-shrink: 0;"></i> <span>Consultar con un Especialista LegalTech</span>
             </a>
         </div>
 
     </div>
 </section>
-    
 
 <!-- SECCIÓN ARTÍCULOS Y DOCTRINA (INDEX.HTML) -->
 <section class="section" id="articulos">
