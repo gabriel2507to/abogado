@@ -759,7 +759,28 @@
         text-align: center;
     }
 }
+/* NAVEGACIÓN FIJA PERMANENTE */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 7%;
+            background: rgba(11, 15, 25, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-subtle);
+            position: fixed; /* Mantiene la barra fija en la parte superior siempre */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
 
+        /* Espaciador superior para evitar que el contenido de la web quede oculto detrás de la barra fija */
+        body {
+            padding-top: 75px; 
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
        
 </style>
 </head>
