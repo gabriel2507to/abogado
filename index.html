@@ -697,6 +697,70 @@
                 max-width: calc(100vw - 40px);
             }
         }
+
+/* Botón Hamburguesa Oculto en PC */
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    color: var(--accent-gold);
+    font-size: 1.3rem;
+    padding: 8px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.menu-toggle:hover {
+    background: rgba(212, 175, 55, 0.1);
+}
+
+/* COMPORTAMIENTO RESPONSIVO EN MÓVILES */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Muestra el botón hamburguesa */
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(11, 15, 25, 0.98);
+        backdrop-filter: blur(15px);
+        border-bottom: 1px solid var(--border-subtle);
+        padding: 25px 20px;
+        gap: 20px;
+        text-align: center;
+        
+        /* Efecto Desplegable Oculto */
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-15px);
+        transition: all 0.3s ease;
+    }
+
+    /* Estado Activo al Hacer Clic */
+    .nav-links.active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .btn-nav-action {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+       
 </style>
 </head>
 <body>
@@ -722,12 +786,19 @@
     <a href="#inicio" class="logo-brand">
         <i class="fa-solid fa-balance-scale" style="color: var(--accent-gold);"></i> Dr. Gabriel Torres <span>V.</span>
     </a>
-    <ul class="nav-links">
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#especialidades">Especialidades</a></li>
-        <li><a href="#legalops">legalops</a></li>
-        <li><a href="#articulos">Artículos Legales</a></li>
-        <li><a href="#contacto" class="btn-nav-action">Consulta Directa</a></li>
+
+    <!-- Botón Menú Hamburguesa (Móvil) -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- Lista de Enlaces -->
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio" onclick="cerrarMenu()">Inicio</a></li>
+        <li><a href="#especialidades" onclick="cerrarMenu()">Especialidades</a></li>
+        <li><a href="#legalops" onclick="cerrarMenu()">LegalOps</a></li>
+        <li><a href="#articulos" onclick="cerrarMenu()">Artículos Legales</a></li>
+        <li><a href="#contacto" class="btn-nav-action" onclick="cerrarMenu()">Consulta Directa</a></li>
     </ul>
 </nav>
 
@@ -1540,6 +1611,28 @@ function ejecutarDiagnosticoExpress() {
     const urlWa = `https://wa.me/593992661432?text=${encodeURIComponent(mensaje)}`;
     window.open(urlWa, '_blank');
 }
+
+const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const toggleIcon = menuToggle.querySelector('i');
+
+    // Alternar apertura y cierre del menú
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        
+        // Cambiar el ícono entre Hamburguesa (bars) y Cierre (xmark)
+        if (navLinks.classList.contains('active')) {
+            toggleIcon.className = 'fa-solid fa-xmark';
+        } else {
+            toggleIcon.className = 'fa-solid fa-bars';
+        }
+    });
+
+    // Cierra el menú automáticamente cuando el usuario hace clic en una opción
+    function cerrarMenu() {
+        navLinks.classList.remove('active');
+        toggleIcon.className = 'fa-solid fa-bars';
+    }
         
     </script>
 
